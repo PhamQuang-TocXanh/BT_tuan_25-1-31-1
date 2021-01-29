@@ -59,7 +59,6 @@ void congngay(int day, int month, int year, int k){
         ngay_cua_thang+=thang[i];
         thangg++;
     }
-    //thangg--;
     ngay_cua_thang=ngay_cua_thang-thang[thangg-1];
     int ngayy=ngay-ngay_cua_nam-ngay_cua_thang;
     cout<<ngayy<<"-"<<thangg<<"-"<<nam<<endl;
