@@ -4,6 +4,7 @@ using namespace std;
     int k;cin>>k;
     for(;k>=3;k/=3);
     cout<<k;
+    return 0;
 }*/
 
 
@@ -12,6 +13,7 @@ using namespace std;
     int k;cin>>k;
     while(k>=3) k/=3;
     cout<<k;
+    return 0;
 }*/
 
 
@@ -24,4 +26,5 @@ int main(){
         k/=3;
     }while(k>=3);
     cout<<k;
+    return 0;
 }
