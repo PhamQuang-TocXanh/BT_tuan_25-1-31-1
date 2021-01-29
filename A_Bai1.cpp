@@ -5,6 +5,7 @@ using namespace std;
     for(int i=0;i<=100;i++){
         if(i%2==0) cout<<i<<" ";
     }
+    return 0;
 }*/
 
 
@@ -14,6 +15,7 @@ using namespace std;
         if(i%2==0) cout<<i<<" ";
         i++;
     }
+    return 0;
 }*/
 
 
@@ -24,4 +26,5 @@ int main(){
         if(i%2!=0) continue;
         cout<<i<<" ";
     }while(i<=100);
+    return 0;
 }
