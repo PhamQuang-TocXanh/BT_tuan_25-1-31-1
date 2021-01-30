@@ -28,3 +28,5 @@ int main(){
     }while(i<=100);
     return 0;
 }
+
+//em nghĩ cách c là tốt nhất
