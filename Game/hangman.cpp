@@ -71,6 +71,7 @@ const string figure[]={
 	" |              \n"
 	"***             \n"
 };
+const char file[]="in.txt";
 string randomWord();
 char getPlayerGuess();
 string updateWord(string hiden,string word, char c);
@@ -95,7 +96,7 @@ int main(int agrc, char *argv[]){
 string randomWord(){
     vector<string> word;
     int count=0;
-    ifstream inF("in.txt");
+    ifstream inF(file);
     if(inF.is_open()){
         while(!inF.eof()){
             string s;
@@ -105,7 +106,9 @@ string randomWord(){
     return word[rand()%count];
 }
 char getPlayerGuess(){
-    char c; cin >> c; return c;
+    char c; cin >> c;
+    cout << "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+    return c;
 }
 string updateWord(string hiden,string word, char c){
     for (int i=0;i<word.size();i++){
