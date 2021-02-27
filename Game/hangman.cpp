@@ -3,7 +3,9 @@
 #include<cstdlib>
 #include<ctime>
 #include<fstream>
+#include<cstring>
 using namespace std;
+const string file = "in.txt\0";
 const int maxBadGuess = 7;
 const string figure[]={
 	"-------------   \n"
@@ -78,7 +80,8 @@ void renderGame(string guessedWord, int badGuess);
 bool contains(string word, char c);
 void diplayResult(bool lost, string word);
 void playGame();
-
+string toLowerCase(const string& s);
+////
 
 int main(int agrc, char *argv[]){
     srand(time(0));
@@ -91,22 +94,31 @@ int main(int agrc, char *argv[]){
     return 0;
 }
 
-
-string randomWord(){
+////
+string randomWord(const string path){
     vector<string> word;
     int count=0;
-    ifstream inF("in.txt");
+    ifstream inF(path.c_str());
     if(inF.is_open()){
         while(!inF.eof()){
             string s;
             inF >> s; word.push_back(s); count++;
         }
-    }
-    return word[rand()%count];
-}
+    }else{
+		cout << "Unable to open file!" << endl;
+	}
+	inF.close();
+	if(word.size()<=0){
+		cout << "File is empty!" << endl; return "";
+	}
+    return toLowerCase (word[rand()%count]);
+}/////////////////////////////
 char getPlayerGuess(){
-    char c; cin >> c; return c;
-}
+	cout << "Enter your guess: ";
+    char c; cin >> c; 
+	c = tolower(c);
+	return c;
+}/////////////////////////////
 string updateWord(string hiden,string word, char c){
     for (int i=0;i<word.size();i++){
         if(word[i]==c){
@@ -114,16 +126,15 @@ string updateWord(string hiden,string word, char c){
         }
     }
     return hiden;
-}
+}/////////////////////////////
 void renderGame(string guessedWord, int badGuess){
     cout << figure[badGuess] ;
     cout << "Number of wrong guess: " << badGuess << endl
          << "Hiden word: " << guessedWord << endl;
-}
-bool contains(string word, char c)
-{
+}/////////////////////////////
+bool contains(string word, char c){
 	return (word.find_first_of(c) != string::npos);
-}
+}/////////////////////////////
 void diplayResult(bool lost, string word){
     if(lost){
         cout << figure[7];
@@ -133,11 +144,11 @@ void diplayResult(bool lost, string word){
         cout << "Congratuation!!! You won\n"
              << "The secret word is: " << word <<endl;
     }
-}
+}/////////////////////////////
 void playGame(){
-    string secretWord = randomWord();
+    string secretWord = randomWord(file);
     string hidenWord = string(secretWord.size(), '-');
-    int badCountGuess=0 ;cout<<secretWord;
+    int badCountGuess=0 ;
     do{
         renderGame(hidenWord, badCountGuess);
         char guess = getPlayerGuess();
@@ -146,4 +157,12 @@ void playGame(){
         }else badCountGuess++;
     }while(badCountGuess<maxBadGuess&&hidenWord!=secretWord);
     diplayResult(badCountGuess==7 , secretWord);
+}/////////////////////////////
+string toLowerCase(const string& s){
+	string res = s;
+	int sz = s.size();
+	for(int i=0;i<sz;i++){
+		res[i] = tolower(s[i]);
+	}
+	return res;
 }
